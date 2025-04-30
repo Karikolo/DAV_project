@@ -1,0 +1,35 @@
+ANALYSIS REPORT FOR 2023-2024 DATASET: cumulative-confirmed-covid-19-cases-per-million-people.csv
+Generated on: 2025-04-30 12:00:35
+Dataset shape: (9503, 4)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+Brazil                   731
+Canada                   731
+China                    731
+France                   731
+Germany                  731
+High-income countries    731
+India                    731
+Italy                    731
+Japan                    731
+Poland                   731
+
+Summary statistics for Total confirmed cases of COVID-19 per million people:
+count      9503.000000
+mean     265898.684297
+std      166344.086105
+min       31344.130000
+25%      120538.470000
+50%      270433.900000
+75%      366051.530000
+max      607254.600000
+
+Latest values for Total confirmed cases of COVID-19 per million people by top entities:
+Brazil: 178436.3400 on 2024-12-31
+Canada: 124134.5900 on 2024-12-31
+China: 69732.6700 on 2024-12-31
+France: 607254.6000 on 2024-12-31
+Germany: 457124.4400 on 2024-12-31
