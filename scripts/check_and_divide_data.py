@@ -4,31 +4,31 @@ import pandas as pd
 import numpy as np
 import os
 from datetime import datetime
-
-try:
-    data_path = f"../data/{sys.argv[1]}"
-except:
-    # adjust if needed:
-    data_path = "../data/share-of-people-who-received-at-least-one-dose-of-covid-19-vaccine.csv"
-    print("Using the data file:", data_path)
+import re
 
 
 def clean_data(df):
     """Clean and validate the dataset"""
     print("Starting data cleaning process...")
 
+    # Check for required columns
+    required_columns = ["Day", "Entity"]
+    for col in required_columns:
+        if col not in df.columns:
+            raise ValueError(f"Required column '{col}' not found in the dataset")
+
     # Check for missing values
     missing_values = df.isnull().sum()
     print(f"Missing values per column:\n{missing_values}")
 
-    # Handle missing values if any
+    # Handle missing values in all numeric columns by entity group median
+    numeric_columns = df.select_dtypes(include=['number']).columns
     if df.isnull().any().any():
-        print("Handling missing values...")
-        # For numerical columns, fill with median of the same entity
-        df['People vaccinated (cumulative, per hundred)'] = df.groupby('Entity')[
-            'People vaccinated (cumulative, per hundred)'].transform(
-            lambda x: x.fillna(x.median() if not np.isnan(x.median()) else 0)
-        )
+        print("Handling missing values in numeric columns...")
+        for col in numeric_columns:
+            df[col] = df.groupby('Entity')[col].transform(
+                lambda x: x.fillna(x.median() if not np.isnan(x.median()) else 0)
+            )
 
     # Check for duplicate rows
     duplicate_count = df.duplicated().sum()
@@ -46,20 +46,6 @@ def clean_data(df):
     if invalid_dates > 0:
         print(f"Warning: {invalid_dates} rows have invalid dates and will be removed")
         df = df.dropna(subset=['Day'])
-
-    # Check for negative or unreasonably high vaccination values
-    invalid_values = df[
-        (df['People vaccinated (cumulative, per hundred)'] < 0) |
-        (df['People vaccinated (cumulative, per hundred)'] > 100)
-        ]
-
-    if not invalid_values.empty:
-        print(f"Warning: {len(invalid_values)} rows have invalid vaccination values")
-        print(invalid_values)
-
-        # Cap values to valid range (0-100)
-        df['People vaccinated (cumulative, per hundred)'] = df['People vaccinated (cumulative, per hundred)'].clip(0,
-                                                                                                                   100)
 
     # Extract year for easier filtering
     df['Year'] = df['Day'].dt.year
@@ -82,15 +68,23 @@ def split_by_year(df):
     return df_2020_2022, df_2023_2024
 
 
-def save_datasets(df_2020_2022, df_2023_2024, output_dir="../data"):
+def save_datasets(df_2020_2022, df_2023_2024, filename, output_dir="../data"):
     """Save the split datasets to CSV files"""
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
 
+    # Extract base filename without path and extension
+    base_filename = os.path.splitext(os.path.basename(filename))[0]
+
     # Define output paths with timestamp
     timestamp = datetime.now().strftime("%Y%m%d")
-    early_years_path = os.path.join(output_dir, f"covid_vaccination_2020_2022_{timestamp}.csv")
-    later_years_path = os.path.join(output_dir, f"covid_vaccination_2023_2024_{timestamp}.csv")
+    early_years_path = os.path.join(output_dir, f"{base_filename}_2020_2022_{timestamp}.csv")
+    later_years_path = os.path.join(output_dir, f"{base_filename}_2023_2024_{timestamp}.csv")
+
+    # Define analysis report paths
+    early_years_report = os.path.join(output_dir, f"{base_filename}_2020_2022_{timestamp}_analysis.txt")
+    later_years_report = os.path.join(output_dir, f"{base_filename}_2023_2024_{timestamp}_analysis.txt")
+    full_dataset_report = os.path.join(output_dir, f"{base_filename}_full_{timestamp}_analysis.txt")
 
     # Save datasets
     df_2020_2022.to_csv(early_years_path, index=False)
@@ -99,33 +93,77 @@ def save_datasets(df_2020_2022, df_2023_2024, output_dir="../data"):
     print(f"Saved 2020-2022 dataset with {len(df_2020_2022)} records to: {early_years_path}")
     print(f"Saved 2023-2024 dataset with {len(df_2023_2024)} records to: {later_years_path}")
 
-    return early_years_path, later_years_path
+    return {
+        'early_years_path': early_years_path,
+        'later_years_path': later_years_path,
+        'early_years_report': early_years_report,
+        'later_years_report': later_years_report,
+        'full_dataset_report': full_dataset_report
+    }
 
 
-def analyze_data(df):
-    """Perform basic analysis on the dataset"""
-    # Get summary statistics
-    summary = df['People vaccinated (cumulative, per hundred)'].describe()
-    print(f"\nSummary statistics for vaccination data:\n{summary}")
+def analyze_data(df, report_file=None):
+    """Perform basic analysis on the dataset
+
+    Args:
+        df: DataFrame to analyze
+        report_file: Optional file object to write analysis to
+
+    Returns:
+        analysis_text: String containing all analysis results
+    """
+    analysis_results = []
+
+    def log(message):
+        """Helper function to both print and store analysis results"""
+        print(message)
+        analysis_results.append(message)
+        if report_file:
+            report_file.write(message + "\n")
 
     # Get entity/country counts
     entity_counts = df['Entity'].value_counts()
-    print(f"\nNumber of records per entity (top 10):\n{entity_counts.head(10)}")
+    log(f"\nNumber of records per entity (top 10):")
+    top_entities_text = entity_counts.head(10).to_string()
+    log(top_entities_text)
 
-    # Check vaccination progress over time for a few top entities
+    # Get summary statistics for all numerical columns
+    numeric_columns = df.select_dtypes(include=['number']).columns
+    for col in numeric_columns:
+        if col != 'Year':  # Skip the Year column we added
+            log(f"\nSummary statistics for {col}:")
+            stats_text = df[col].describe().to_string()
+            log(stats_text)
+
+    # Check the latest value for top entities for each numeric column
     top_entities = entity_counts.head(5).index.tolist()
 
-    print(f"\nVaccination progress (final available record) for top entities:")
-    for entity in top_entities:
-        latest = df[df['Entity'] == entity].sort_values('Day').iloc[-1]
-        print(
-            f"{entity}: {latest['People vaccinated (cumulative, per hundred)']:.2f}% on {latest['Day'].strftime('%Y-%m-%d')}")
+    for col in numeric_columns:
+        if col != 'Year':  # Skip the Year column we added
+            log(f"\nLatest values for {col} by top entities:")
+            for entity in top_entities:
+                try:
+                    entity_data = df[df['Entity'] == entity]
+                    if not entity_data.empty:
+                        latest = entity_data.sort_values('Day').iloc[-1]
+                        log(f"{entity}: {latest[col]:.4f} on {latest['Day'].strftime('%Y-%m-%d')}")
+                except Exception as e:
+                    log(f"Could not analyze {entity} for {col}: {e}")
+
+    # Return the full analysis text
+    return "\n".join(analysis_results)
 
 
-def main():
+def main(file_path):
+    # Extract filename for logging
+    filename = os.path.basename(file_path)
+    print(f"\n{'=' * 50}")
+    print(f"Processing file: {filename}")
+    print(f"{'=' * 50}")
+
     # Load dataset
     try:
-        data = pd.read_csv(data_path)
+        data = pd.read_csv(file_path)
         print(f"Successfully loaded data with {len(data)} rows and {len(data.columns)} columns")
         print("Original data preview:")
         print(data.head())
@@ -140,26 +178,97 @@ def main():
         # Split data by year ranges
         df_2020_2022, df_2023_2024 = split_by_year(cleaned_data)
 
-        # Analyze the cleaned data
-        print("\n===== ANALYSIS OF CLEANED DATA =====")
-        analyze_data(cleaned_data)
+        print(f"\n2020-2022 dataset shape: {df_2020_2022.shape}")
+        print(f"2023-2024 dataset shape: {df_2023_2024.shape}")
 
-        # Analyze the split datasets
-        print("\n===== ANALYSIS OF 2020-2022 DATASET =====")
-        analyze_data(df_2020_2022)
+        # Save the split datasets and get report paths
+        output_paths = save_datasets(df_2020_2022, df_2023_2024, filename=file_path)
 
-        print("\n===== ANALYSIS OF 2023-2024 DATASET =====")
-        analyze_data(df_2023_2024)
+        # Analyze and save analysis for each dataset
+        print("\nGenerating analysis reports...")
 
-        # Save the split datasets
-        early_years_path, later_years_path = save_datasets(df_2020_2022, df_2023_2024)
+        # Full dataset analysis
+        if not cleaned_data.empty:
+            print("\n===== ANALYSIS OF CLEANED DATA =====")
+            with open(output_paths['full_dataset_report'], 'w') as report_file:
+                report_file.write(f"ANALYSIS REPORT FOR FULL DATASET: {filename}\n")
+                report_file.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                report_file.write(f"Dataset shape: {cleaned_data.shape}\n")
+                report_file.write("=" * 50 + "\n\n")
+                analyze_data(cleaned_data, report_file)
+            print(f"Full dataset analysis saved to: {output_paths['full_dataset_report']}")
 
-        print("\nData processing complete!")
+        # 2020-2022 dataset analysis
+        if not df_2020_2022.empty:
+            print("\n===== ANALYSIS OF 2020-2022 DATASET =====")
+            with open(output_paths['early_years_report'], 'w') as report_file:
+                report_file.write(f"ANALYSIS REPORT FOR 2020-2022 DATASET: {filename}\n")
+                report_file.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                report_file.write(f"Dataset shape: {df_2020_2022.shape}\n")
+                report_file.write("=" * 50 + "\n\n")
+                analyze_data(df_2020_2022, report_file)
+            print(f"2020-2022 dataset analysis saved to: {output_paths['early_years_report']}")
+        else:
+            print("\nNo data available for 2020-2022 period.")
+            with open(output_paths['early_years_report'], 'w') as report_file:
+                report_file.write(f"ANALYSIS REPORT FOR 2020-2022 DATASET: {filename}\n")
+                report_file.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                report_file.write("No data available for this period.\n")
+
+        # 2023-2024 dataset analysis
+        if not df_2023_2024.empty:
+            print("\n===== ANALYSIS OF 2023-2024 DATASET =====")
+            with open(output_paths['later_years_report'], 'w') as report_file:
+                report_file.write(f"ANALYSIS REPORT FOR 2023-2024 DATASET: {filename}\n")
+                report_file.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                report_file.write(f"Dataset shape: {df_2023_2024.shape}\n")
+                report_file.write("=" * 50 + "\n\n")
+                analyze_data(df_2023_2024, report_file)
+            print(f"2023-2024 dataset analysis saved to: {output_paths['later_years_report']}")
+        else:
+            print("\nNo data available for 2023-2024 period.")
+            with open(output_paths['later_years_report'], 'w') as report_file:
+                report_file.write(f"ANALYSIS REPORT FOR 2023-2024 DATASET: {filename}\n")
+                report_file.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                report_file.write("No data available for this period.\n")
+
+        print("\nData processing and analysis complete!")
 
     except Exception as e:
-        print(f"Error processing data: {e}")
-        raise
+        print(f"Error processing {filename}: {e}")
+        # Continue with next file without raising the exception
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        # If argument provided, use that specific file
+        if len(sys.argv) > 1:
+            data_path = f"../data/{sys.argv[1]}"
+            if os.path.exists(data_path):
+                data_paths = [data_path]
+            else:
+                print(f"File not found: {data_path}")
+                sys.exit(1)
+        else:
+            # Otherwise process all CSV files in the data directory
+            data_dir = "../data/"
+            if not os.path.exists(data_dir):
+                print(f"Data directory not found: {data_dir}")
+                sys.exit(1)
+
+            data_paths = [os.path.join(data_dir, f) for f in os.listdir(data_dir)
+                          if f.endswith('.csv') and os.path.isfile(os.path.join(data_dir, f))]
+
+            if not data_paths:
+                print(f"No CSV files found in {data_dir}")
+                sys.exit(1)
+
+            print(f"Found {len(data_paths)} CSV files to process")
+
+        # Process each file
+        for file_path in data_paths:
+            main(file_path)
+
+    except Exception as e:
+        print(f"Fatal error: {e}")
+        sys.exit(1)
