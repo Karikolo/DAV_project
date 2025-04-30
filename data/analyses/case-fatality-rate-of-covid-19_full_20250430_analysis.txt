@@ -1,0 +1,35 @@
+ANALYSIS REPORT FOR FULL DATASET: case-fatality-rate-of-covid-19.csv
+Generated on: 2025-04-30 12:00:35
+Dataset shape: (24603, 4)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+China                    1913
+Germany                  1913
+High-income countries    1913
+World                    1913
+Japan                    1903
+United States            1897
+Canada                   1891
+France                   1891
+India                    1887
+Italy                    1886
+
+Summary statistics for Case fatality rate of COVID-19 (%):
+count     24603.000000
+mean        140.854358
+std        3323.159395
+min           0.000000
+25%           0.734619
+50%           1.184768
+75%           2.190489
+max      103875.000000
+
+Latest values for Case fatality rate of COVID-19 (%) by top entities:
+China: 0.1232 on 2025-03-30
+Germany: 0.4552 on 2025-03-30
+High-income countries: 0.7050 on 2025-03-30
+World: 0.9121 on 2025-03-30
+Japan: 0.2210 on 2025-03-30

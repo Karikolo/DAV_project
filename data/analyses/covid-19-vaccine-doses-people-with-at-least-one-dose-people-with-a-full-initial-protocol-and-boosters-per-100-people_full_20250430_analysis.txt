@@ -1,0 +1,86 @@
+ANALYSIS REPORT FOR FULL DATASET: covid-19-vaccine-doses-people-with-at-least-one-dose-people-with-a-full-initial-protocol-and-boosters-per-100-people.csv
+Generated on: 2025-04-30 12:00:35
+Dataset shape: (12623, 7)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+High-income countries    1350
+World                    1350
+Canada                   1269
+India                    1250
+Italy                    1039
+Poland                    950
+France                    927
+United States             878
+Germany                   833
+Japan                     794
+
+Summary statistics for COVID-19 doses (cumulative, per hundred):
+count    12623.000000
+mean       155.819135
+std         77.696514
+min          0.000000
+25%        112.006895
+50%        162.080760
+75%        224.370915
+max        346.692100
+
+Summary statistics for People vaccinated (cumulative, per hundred):
+count    12623.000000
+mean        65.144694
+std         24.541100
+min          0.000000
+25%         59.399090
+50%         74.231330
+75%         80.095180
+max         92.481460
+
+Summary statistics for People fully vaccinated (cumulative, per hundred):
+count    12623.000000
+mean        58.779642
+std         26.110245
+min          0.000000
+25%         53.147655
+50%         66.786200
+75%         75.708435
+max         90.127560
+
+Summary statistics for Booster doses (cumulative, per hundred):
+count    12623.000000
+mean        36.642874
+std         30.493711
+min          0.000000
+25%          4.731324
+50%         35.559708
+75%         59.295980
+max        140.532580
+
+Latest values for COVID-19 doses (cumulative, per hundred) by top entities:
+High-income countries: 233.7730 on 2024-08-12
+World: 171.8770 on 2024-08-12
+Canada: 265.0025 on 2024-07-24
+India: 154.8220 on 2024-08-12
+Italy: 252.1367 on 2023-12-23
+
+Latest values for People vaccinated (cumulative, per hundred) by top entities:
+High-income countries: 80.0952 on 2024-08-12
+World: 70.6975 on 2024-08-12
+Canada: 78.2549 on 2024-07-24
+India: 72.0796 on 2024-08-12
+Italy: 85.3219 on 2023-12-23
+
+Latest values for People fully vaccinated (cumulative, per hundred) by top entities:
+High-income countries: 75.0815 on 2024-08-12
+World: 65.0961 on 2024-08-12
+Canada: 75.7084 on 2024-07-24
+India: 66.7865 on 2024-08-12
+Italy: 83.0013 on 2023-12-23
+
+Latest values for Booster doses (cumulative, per hundred) by top entities:
+High-income countries: 67.8889 on 2024-08-12
+World: 35.5730 on 2024-08-12
+Canada: 89.8743 on 2024-07-24
+India: 15.9413 on 2024-08-12
+Italy: 68.1092 on 2023-12-23
