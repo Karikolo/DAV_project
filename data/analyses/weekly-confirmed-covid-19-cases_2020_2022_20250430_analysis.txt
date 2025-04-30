@@ -1,0 +1,35 @@
+ANALYSIS REPORT FOR 2020-2022 DATASET: weekly-confirmed-covid-19-cases.csv
+Generated on: 2025-04-30 13:24:31
+Dataset shape: (14139, 4)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+China                    1088
+Germany                  1088
+France                   1088
+Italy                    1088
+High-income countries    1088
+United States            1088
+United Kingdom           1088
+Japan                    1088
+Poland                   1088
+World                    1088
+
+Summary statistics for Weekly cases:
+count    1.413900e+04
+mean     7.621553e+05
+std      2.381123e+06
+min      0.000000e+00
+25%      1.227850e+04
+50%      1.133550e+05
+75%      4.244975e+05
+max      4.481423e+07
+
+Latest values for Weekly cases by top entities:
+China: 28149256.0000 on 2022-12-31
+Germany: 230746.0000 on 2022-12-31
+France: 299842.0000 on 2022-12-31
+Italy: 127700.0000 on 2022-12-31
+High-income countries: 2905730.0000 on 2022-12-31

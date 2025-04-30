@@ -1,0 +1,35 @@
+ANALYSIS REPORT FOR FULL DATASET: weekly-confirmed-covid-19-deaths.csv
+Generated on: 2025-04-30 13:24:31
+Dataset shape: (23685, 4)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+Brazil                   1922
+Poland                   1922
+Italy                    1922
+India                    1922
+High-income countries    1922
+World                    1922
+United Kingdom           1922
+Japan                    1921
+Canada                   1921
+United States            1921
+
+Summary statistics for Weekly deaths:
+count     23685.000000
+mean       4062.507536
+std       11774.075834
+min           0.000000
+25%          20.000000
+50%         375.000000
+75%        1977.000000
+max      103745.000000
+
+Latest values for Weekly deaths by top entities:
+Brazil: 4.0000 on 2025-04-13
+Poland: 0.0000 on 2025-04-13
+Italy: 2.0000 on 2025-04-13
+India: 0.0000 on 2025-04-13
+High-income countries: 288.0000 on 2025-04-13

@@ -1,0 +1,35 @@
+ANALYSIS REPORT FOR 2023-2024 DATASET: weekly-confirmed-covid-19-cases.csv
+Generated on: 2025-04-30 13:24:31
+Dataset shape: (7822, 4)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+Brazil                   731
+Canada                   731
+China                    731
+India                    731
+High-income countries    731
+Poland                   731
+United Kingdom           731
+Italy                    731
+Japan                    731
+World                    731
+
+Summary statistics for Weekly cases:
+count    7.822000e+03
+mean     1.143695e+05
+std      8.678402e+05
+min      0.000000e+00
+25%      3.647500e+02
+50%      3.488500e+03
+75%      3.589025e+04
+max      2.773269e+07
+
+Latest values for Weekly cases by top entities:
+Brazil: 14613.0000 on 2024-12-31
+Canada: 0.0000 on 2024-12-31
+China: 56.0000 on 2024-12-31
+India: 24.0000 on 2024-12-31
+High-income countries: 12984.0000 on 2024-12-31
