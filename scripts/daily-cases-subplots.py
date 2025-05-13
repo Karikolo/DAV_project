@@ -45,5 +45,5 @@ if __name__ == "__main__":
     file_path = '../data/daily-cases&deaths/daily-selected-new-confirmed-covid-19-cases-deaths-per-million-people.csv'
 
     cases, deaths = data_clearing(file_path)
-    line(cases, 'Cases')
-    line(deaths, 'Deaths')
+    line(cases, 'cases')
+    line(deaths, 'deaths')
