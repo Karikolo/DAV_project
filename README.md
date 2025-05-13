@@ -2,7 +2,7 @@
 Project for Data Analysis and Visualisation course concerning information about the proceeding of the COVID-19 pandemic in Canada.
 
 Contents:
-.
+. <br>
 ├── data
 │   ├── 2020-2022
 │   ├── 2023-2024
