@@ -2,7 +2,7 @@ import plotly.express as px
 import pandas as pd
 import argparse
 
-def data_clearing_Canada(file):
+def data_clearing_canada(file):
     data = pd.read_csv(file)
     data = data[data['Entity'] == 'Canada']
     Canada_cases_data = data[['Day', 'Daily new confirmed cases of COVID-19 per million people (rolling 7-day average, right-aligned)']]
@@ -43,6 +43,6 @@ def bar(data, name):
 if __name__ == "__main__":
     file_path = '../data/daily-cases&deaths/daily-selected-new-confirmed-covid-19-cases-deaths-per-million-people.csv'
 
-    cases, deaths = data_clearing_Canada(file_path)
-    bar(cases, 'Cases')
-    bar(deaths, 'Deaths')
+    cases, deaths = data_clearing_canada(file_path)
+    bar(cases, 'cases')
+    bar(deaths, 'deaths')
