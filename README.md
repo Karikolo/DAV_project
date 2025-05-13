@@ -1,19 +1,19 @@
 # DAV_project
 Project for Data Analysis and Visualisation course concerning information about the proceeding of the COVID-19 pandemic in Canada.
 
-Contents:
+Contents:<br>
 . <br>
-├── data
-│   ├── 2020-2022
-│   ├── 2023-2024
-│   ├── analyses
-│   └── original_data
-├── plots
-├── README.md
-└── scripts
-    ├── check_and_divide_data.py   -  initial script for division of data into 2020-2022 and 2023-2024 time periods (for easier analysis)
-    ├── daily-cases-Canada.py
-    └── daily-cases-subplots.py
+├── data <br>
+│   ├── 2020-2022 <br>
+│   ├── 2023-2024 <br>
+│   ├── analyses <br>
+│   └── original_data <br>
+├── plots <br>
+├── README.md <br>
+└── scripts <br>
+    ├── check_and_divide_data.py   -  initial script for division of data into 2020-2022 and 2023-2024 time periods (for easier analysis) <br>
+    ├── daily-cases-Canada.py <br>
+    └── daily-cases-subplots.py <br>
 
 
 Sources:
