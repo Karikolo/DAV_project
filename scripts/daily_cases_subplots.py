@@ -23,7 +23,7 @@ def line(data, name):
         custom_data=['Day_str', 'Entity'],
         color='Entity',
         labels={'Day': 'Date', y_column: f'Daily {name}'},
-        title=f'<b>Daily {name} per 1 000 000</b> <br><i>(7-day average)</i>'
+        title=f'<b>Daily {name} per 1 000 000 people</b> <br><i>(7-day average)</i>'
     )
     
     fig.update_traces(
@@ -42,7 +42,7 @@ def line(data, name):
 
 
 if __name__ == "__main__":
-    file_path = '../data/daily-cases&deaths/daily-selected-new-confirmed-covid-19-cases-deaths-per-million-people.csv'
+    file_path = '../data/original_data/daily-selected-new-confirmed-covid-19-cases-deaths-per-million-people.csv'
 
     cases, deaths = data_clearing(file_path)
     line(cases, 'cases')

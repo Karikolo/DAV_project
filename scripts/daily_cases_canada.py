@@ -1,3 +1,5 @@
+import os.path
+
 import plotly.express as px
 import pandas as pd
 import argparse
@@ -22,7 +24,7 @@ def bar(data, name):
         y='Raw value',
         custom_data=['Day_str'],
         labels={'Day': 'Date', y_column: f'Daily {name}'},
-        title=f'<b>Daily {name} in Canada</b> <br><i>(7-day average)</i>'
+        title=f'<b>Daily {name} in Canada per 1 000 000 people</b> <br><i>(7-day average)</i>'
     )
 
     fig.update_traces(
@@ -36,12 +38,13 @@ def bar(data, name):
 
     fig.update_layout(bargap=0.2)
 
+    if not os.path.exists("../plots"): os.mkdir("../plots")
     file_path = f'../plots/{name}.html'
     fig.write_html(file_path)
 
 
 if __name__ == "__main__":
-    file_path = '../data/daily-cases&deaths/daily-selected-new-confirmed-covid-19-cases-deaths-per-million-people.csv'
+    file_path = '../data/original_data/daily-selected-new-confirmed-covid-19-cases-deaths-per-million-people.csv'
 
     cases, deaths = data_clearing_canada(file_path)
     bar(cases, 'cases')
