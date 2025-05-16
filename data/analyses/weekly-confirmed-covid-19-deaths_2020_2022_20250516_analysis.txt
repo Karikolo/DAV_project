@@ -1,0 +1,35 @@
+ANALYSIS REPORT FOR 2020-2022 DATASET: weekly-confirmed-covid-19-deaths.csv
+Generated on: 2025-05-16 16:28:52
+Dataset shape: (11582, 4)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+Brazil                   891
+Canada                   891
+China                    891
+France                   891
+Germany                  891
+High-income countries    891
+India                    891
+Italy                    891
+Japan                    891
+Poland                   891
+
+Summary statistics for Weekly deaths:
+count     11582.000000
+mean       7208.552582
+std       15917.224209
+min           0.000000
+25%         127.000000
+50%         963.000000
+75%        5084.000000
+max      103745.000000
+
+Latest values for Weekly deaths by top entities:
+Brazil: 1046.0000 on 2022-06-17
+Canada: 0.0000 on 2022-06-17
+China: 1044.0000 on 2022-06-17
+France: 237.0000 on 2022-06-17
+Germany: 285.0000 on 2022-06-17

@@ -52,16 +52,16 @@ if __name__ == "__main__":
     bar(cases, 'weekly cases')
     bar(deaths, 'weekly deaths')
 
-    filepath_cases_2022 = '../data/2020-2022/weekly-confirmed-covid-19-cases_2020_2022_20250430.csv'
-    filepath_deaths_2022 = '../data/2020-2022/weekly-confirmed-covid-19-deaths_2020_2022_20250430.csv'
+    filepath_cases_2022 = '../data/2020-2022/weekly-confirmed-covid-19-cases_2020_2022_20250516.csv'
+    filepath_deaths_2022 = '../data/2020-2022/weekly-confirmed-covid-19-deaths_2020_2022_20250516.csv'
 
     cases_2022 = data_clearing_canada(filepath_cases_2022, 'cases')
     deaths_2022 = data_clearing_canada(filepath_deaths_2022, 'deaths')
     bar(cases_2022, 'weekly cases in 2020-2022')
     bar(deaths_2022, 'weekly deaths in 2020-2022')
 
-    filepath_cases_2024 = '../data/2023-2024/weekly-confirmed-covid-19-cases_2023_2024_20250430.csv'
-    filepath_deaths_2024 = '../data/2023-2024/weekly-confirmed-covid-19-deaths_2023_2024_20250430.csv'
+    filepath_cases_2024 = '../data/2023-2024/weekly-confirmed-covid-19-cases_2023_2024_20250516.csv'
+    filepath_deaths_2024 = '../data/2023-2024/weekly-confirmed-covid-19-deaths_2023_2024_20250516.csv'
 
     cases_2022 = data_clearing_canada(filepath_cases_2024, 'cases')
     deaths_2022 = data_clearing_canada(filepath_deaths_2024, 'deaths')

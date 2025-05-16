@@ -1,0 +1,52 @@
+ANALYSIS REPORT FOR 2020-2022 DATASET: daily-selected-new-confirmed-covid-19-cases-deaths-per-million-people.csv
+Generated on: 2025-05-16 16:28:52
+Dataset shape: (11583, 5)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+Brazil                   891
+Canada                   891
+China                    891
+France                   891
+Germany                  891
+High-income countries    891
+India                    891
+Italy                    891
+Japan                    891
+Poland                   891
+
+Summary statistics for Daily new confirmed cases of COVID-19 per million people (rolling 7-day average, right-aligned):
+count    11583.000000
+mean       213.713815
+std        441.579125
+min          0.000000
+25%          9.288184
+50%         68.065834
+75%        225.869190
+max       5371.904300
+
+Summary statistics for Daily new confirmed deaths due to COVID-19 per million people (rolling 7-day average, right-aligned):
+count    11583.000000
+mean         2.027349
+std          2.824360
+min          0.000000
+25%          0.180444
+50%          0.881560
+75%          2.687719
+max         20.372763
+
+Latest values for Daily new confirmed cases of COVID-19 per million people (rolling 7-day average, right-aligned) by top entities:
+Brazil: 201.0618 on 2022-06-17
+Canada: 10.9991 on 2022-06-17
+China: 43.3232 on 2022-06-17
+France: 430.7515 on 2022-06-17
+Germany: 563.0856 on 2022-06-17
+
+Latest values for Daily new confirmed deaths due to COVID-19 per million people (rolling 7-day average, right-aligned) by top entities:
+Brazil: 0.7105 on 2022-06-17
+Canada: 0.0000 on 2022-06-17
+China: 0.1046 on 2022-06-17
+France: 0.5267 on 2022-06-17
+Germany: 0.4842 on 2022-06-17

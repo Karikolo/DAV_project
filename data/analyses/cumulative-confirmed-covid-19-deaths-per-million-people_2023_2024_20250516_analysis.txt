@@ -1,0 +1,35 @@
+ANALYSIS REPORT FOR 2023-2024 DATASET: cumulative-confirmed-covid-19-deaths-per-million-people.csv
+Generated on: 2025-05-16 16:28:52
+Dataset shape: (12077, 4)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+Brazil                   929
+Canada                   929
+China                    929
+France                   929
+Germany                  929
+High-income countries    929
+India                    929
+Italy                    929
+Japan                    929
+Poland                   929
+
+Summary statistics for Total confirmed deaths due to COVID-19 per million people:
+count    12077.000000
+mean      2028.619621
+std       1197.873701
+min         13.800366
+25%        860.538700
+50%       2382.254000
+75%       3174.521700
+max       3551.063700
+
+Latest values for Total confirmed deaths due to COVID-19 per million people by top entities:
+Brazil: 3338.8909 on 2024-12-31
+Canada: 1424.0154 on 2024-12-31
+China: 85.8776 on 2024-12-31
+France: 2615.9440 on 2024-12-31
+Germany: 2080.9485 on 2024-12-31

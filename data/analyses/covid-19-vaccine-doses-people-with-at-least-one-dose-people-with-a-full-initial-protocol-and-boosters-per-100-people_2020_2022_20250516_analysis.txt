@@ -1,0 +1,86 @@
+ANALYSIS REPORT FOR 2020-2022 DATASET: covid-19-vaccine-doses-people-with-at-least-one-dose-people-with-a-full-initial-protocol-and-boosters-per-100-people.csv
+Generated on: 2025-05-16 16:28:51
+Dataset shape: (6751, 7)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+High-income countries    563
+World                    563
+United States            552
+Canada                   551
+Germany                  538
+France                   538
+Italy                    538
+United Kingdom           523
+India                    503
+Brazil                   497
+
+Summary statistics for COVID-19 doses (cumulative, per hundred):
+count    6751.000000
+mean      110.477975
+std        73.359108
+min         0.000000
+25%        38.203304
+50%       120.454530
+75%       166.922815
+max       238.138920
+
+Summary statistics for People vaccinated (cumulative, per hundred):
+count    6751.000000
+mean       54.732260
+std        28.954945
+min         0.000000
+25%        30.741081
+50%        64.715294
+75%        77.897305
+max        90.678680
+
+Summary statistics for People fully vaccinated (cumulative, per hundred):
+count    6751.000000
+mean       46.567089
+std        29.995886
+min         0.000000
+25%        13.293043
+50%        56.358124
+75%        73.025528
+max        88.352660
+
+Summary statistics for Booster doses (cumulative, per hundred):
+count    6751.000000
+mean       21.180340
+std        23.100517
+min         0.000000
+25%         0.051479
+50%        11.081526
+75%        43.818213
+max        68.625550
+
+Latest values for COVID-19 doses (cumulative, per hundred) by top entities:
+High-income countries: 202.1697 on 2022-06-17
+World: 150.3269 on 2022-06-17
+United States: 174.8867 on 2022-06-17
+Canada: 221.5587 on 2022-06-17
+Germany: 217.0836 on 2022-06-17
+
+Latest values for People vaccinated (cumulative, per hundred) by top entities:
+High-income countries: 78.4689 on 2022-06-17
+World: 65.3783 on 2022-06-17
+United States: 75.9317 on 2022-06-17
+Canada: 84.3966 on 2022-06-17
+Germany: 76.9772 on 2022-06-17
+
+Latest values for People fully vaccinated (cumulative, per hundred) by top entities:
+High-income countries: 73.7167 on 2022-06-17
+World: 59.7687 on 2022-06-17
+United States: 65.3458 on 2022-06-17
+Canada: 80.9611 on 2022-06-17
+Germany: 75.3662 on 2022-06-17
+
+Latest values for Booster doses (cumulative, per hundred) by top entities:
+High-income countries: 51.8198 on 2022-06-17
+World: 26.1399 on 2022-06-17
+United States: 36.3005 on 2022-06-17
+Canada: 56.2010 on 2022-06-17
+Germany: 67.4614 on 2022-06-17

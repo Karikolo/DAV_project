@@ -1,0 +1,30 @@
+ANALYSIS REPORT FOR 2023-2024 DATASET: cumulative-covid-19-tests-per-1000-people.csv
+Generated on: 2025-05-16 16:28:51
+Dataset shape: (21, 4)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+Italy            6
+Japan            6
+India            5
+France           2
+United States    2
+
+Summary statistics for Cumulative total per 1,000 people:
+count      21.000000
+mean     2000.015810
+std      1638.770097
+min       425.728000
+25%       429.370000
+50%       609.938000
+75%      3785.562000
+max      4126.754000
+
+Latest values for Cumulative total per 1,000 people by top entities:
+Italy: 3795.9980 on 2022-06-22
+Japan: 429.3700 on 2022-06-22
+India: 609.9380 on 2022-06-21
+France: 4126.7540 on 2022-06-18
+United States: 2708.5330 on 2022-06-18

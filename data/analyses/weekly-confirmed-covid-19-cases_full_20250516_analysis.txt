@@ -1,0 +1,35 @@
+ANALYSIS REPORT FOR FULL DATASET: weekly-confirmed-covid-19-cases.csv
+Generated on: 2025-05-16 16:28:52
+Dataset shape: (22991, 4)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+China                    1922
+Poland                   1922
+Japan                    1922
+Italy                    1922
+High-income countries    1922
+World                    1922
+United Kingdom           1922
+Canada                   1921
+Brazil                   1921
+India                    1919
+
+Summary statistics for Weekly cases:
+count    2.299100e+04
+mean     5.078426e+05
+std      1.961297e+06
+min      0.000000e+00
+25%      1.647000e+03
+50%      3.003200e+04
+75%      2.420615e+05
+max      4.481423e+07
+
+Latest values for Weekly cases by top entities:
+China: 0.0000 on 2025-04-13
+Poland: 236.0000 on 2025-04-13
+Japan: 0.0000 on 2025-04-13
+Italy: 259.0000 on 2025-04-13
+High-income countries: 3713.0000 on 2025-04-13

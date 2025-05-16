@@ -1,0 +1,52 @@
+ANALYSIS REPORT FOR 2023-2024 DATASET: daily-selected-new-confirmed-covid-19-cases-deaths-per-million-people.csv
+Generated on: 2025-05-16 16:28:52
+Dataset shape: (10989, 5)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+Brazil                   929
+Canada                   929
+China                    929
+India                    929
+High-income countries    929
+Poland                   929
+United Kingdom           929
+Italy                    929
+Japan                    929
+United States            929
+
+Summary statistics for Daily new confirmed cases of COVID-19 per million people (rolling 7-day average, right-aligned):
+count    10989.000000
+mean       100.876703
+std        252.121314
+min          0.000000
+25%          0.465203
+50%         12.069230
+75%         82.003500
+max       4127.289600
+
+Summary statistics for Daily new confirmed deaths due to COVID-19 per million people (rolling 7-day average, right-aligned):
+count    10989.000000
+mean         0.350836
+std          0.579368
+min          0.000000
+25%          0.001002
+50%          0.107431
+75%          0.520354
+max         12.875683
+
+Latest values for Daily new confirmed cases of COVID-19 per million people (rolling 7-day average, right-aligned) by top entities:
+Brazil: 9.7667 on 2024-12-31
+Canada: 0.0000 on 2024-12-31
+China: 0.0056 on 2024-12-31
+India: 0.0024 on 2024-12-31
+High-income countries: 1.5165 on 2024-12-31
+
+Latest values for Daily new confirmed deaths due to COVID-19 per million people (rolling 7-day average, right-aligned) by top entities:
+Brazil: 0.0503 on 2024-12-31
+Canada: 0.0000 on 2024-12-31
+China: 0.0002 on 2024-12-31
+India: 0.0000 on 2024-12-31
+High-income countries: 0.1254 on 2024-12-31

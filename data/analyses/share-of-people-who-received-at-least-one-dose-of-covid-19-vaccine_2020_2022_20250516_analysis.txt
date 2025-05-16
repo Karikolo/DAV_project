@@ -1,0 +1,35 @@
+ANALYSIS REPORT FOR 2020-2022 DATASET: share-of-people-who-received-at-least-one-dose-of-covid-19-vaccine.csv
+Generated on: 2025-05-16 16:28:52
+Dataset shape: (6270, 4)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+High-income countries    563
+World                    563
+United States            552
+France                   538
+Germany                  538
+Italy                    538
+United Kingdom           523
+Canada                   510
+India                    503
+Brazil                   493
+
+Summary statistics for People vaccinated (cumulative, per hundred):
+count    6270.000000
+mean       52.109217
+std        28.371458
+min         0.000000
+25%        26.303657
+50%        61.611703
+75%        76.672783
+max        90.678680
+
+Latest values for People vaccinated (cumulative, per hundred) by top entities:
+High-income countries: 78.4689 on 2022-06-17
+World: 65.3783 on 2022-06-17
+United States: 75.9317 on 2022-06-17
+France: 82.2555 on 2022-06-17
+Germany: 76.9772 on 2022-06-17
