@@ -1,0 +1,87 @@
+ANALYSIS REPORT FOR FULL DATASET: 2020_CA_Region_Mobility_Report.csv
+Generated on: 2025-05-16 14:00:21
+Dataset shape: (321, 9)
+==================================================
+
+
+Number of records per entity (top 10):
+Entity
+Canada    321
+
+Summary statistics for retail_and_recreation_percent_change_from_baseline:
+count    321.000000
+mean     -22.928349
+std       16.587962
+min      -85.000000
+25%      -29.000000
+50%      -20.000000
+75%      -12.000000
+max       13.000000
+
+Summary statistics for grocery_and_pharmacy_percent_change_from_baseline:
+count    321.000000
+mean      -4.018692
+std       12.305726
+min      -78.000000
+25%       -7.000000
+50%       -2.000000
+75%        2.000000
+max       40.000000
+
+Summary statistics for parks_percent_change_from_baseline:
+count    321.000000
+mean      59.859813
+std       66.777773
+min      -33.000000
+25%        2.000000
+50%       37.000000
+75%      119.000000
+max      234.000000
+
+Summary statistics for transit_stations_percent_change_from_baseline:
+count    321.000000
+mean     -45.242991
+std       17.049473
+min      -82.000000
+25%      -55.000000
+50%      -47.000000
+75%      -42.000000
+max        6.000000
+
+Summary statistics for workplaces_percent_change_from_baseline:
+count    321.000000
+mean     -32.168224
+std       19.619101
+min      -86.000000
+25%      -43.000000
+50%      -34.000000
+75%      -12.000000
+max        7.000000
+
+Summary statistics for residential_percent_change_from_baseline:
+count    321.000000
+mean      11.186916
+std        6.846255
+min       -2.000000
+25%        8.000000
+50%       11.000000
+75%       14.000000
+max       33.000000
+
+Latest values for retail_and_recreation_percent_change_from_baseline by top entities:
+Canada: -28.0000 on 2020-12-31
+
+Latest values for grocery_and_pharmacy_percent_change_from_baseline by top entities:
+Canada: 19.0000 on 2020-12-31
+
+Latest values for parks_percent_change_from_baseline by top entities:
+Canada: 31.0000 on 2020-12-31
+
+Latest values for transit_stations_percent_change_from_baseline by top entities:
+Canada: -65.0000 on 2020-12-31
+
+Latest values for workplaces_percent_change_from_baseline by top entities:
+Canada: -64.0000 on 2020-12-31
+
+Latest values for residential_percent_change_from_baseline by top entities:
+Canada: 21.0000 on 2020-12-31

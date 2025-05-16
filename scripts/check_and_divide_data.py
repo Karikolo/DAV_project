@@ -15,7 +15,19 @@ def clean_data(df):
     required_columns = ["Day", "Entity"]
     for col in required_columns:
         if col not in df.columns:
-            raise ValueError(f"Required column '{col}' not found in the dataset")
+            # for Mobility_Report datafile:
+            if "date" and "country_region" in df.columns:
+                df['Day'] = df["date"]
+                df["Entity"] = df["country_region"]
+                if "sub_region_1" in df.columns:
+                    df = df[df['sub_region_1'].isna()]
+                    print("\nData frame after filtering of sub_region_1: ")
+                    print(df)
+                    required = "retail_and_recreation_percent_change_from_baseline,grocery_and_pharmacy_percent_change_from_baseline,parks_percent_change_from_baseline,transit_stations_percent_change_from_baseline,workplaces_percent_change_from_baseline,residential_percent_change_from_baseline".split(",")
+                    required = ["Entity","Day"] + required
+                    df = df.filter(items=required)
+            else:
+                raise ValueError(f"Required column '{col}' not found in the dataset")
 
     # Check for missing values
     missing_values = df.isnull().sum()
@@ -60,15 +72,16 @@ def clean_data(df):
 def split_by_year(df):
     """Split the dataset into two based on year ranges"""
     # 2020-2022 dataset
-    df_2020_2022 = df[(df['Year'] >= 2020) & (df['Year'] <= 2022)].copy()
+    split_date = datetime(2022,6,17)
+    df_2020_2022 = df[(df['Year'] >= 2020) & (df['Day'] <= split_date)].copy()
 
     # 2023-2024 dataset
-    df_2023_2024 = df[(df['Year'] >= 2023) & (df['Year'] <= 2024)].copy()
+    df_2023_2024 = df[(df['Day'] >= split_date) & (df['Year'] <= 2024)].copy()
 
-    return df_2020_2022, df_2023_2024
+    return df_2020_2022, df_2023_2024, df
 
 
-def save_datasets(df_2020_2022, df_2023_2024, filename, output_dir="../data"):
+def save_datasets(df_2020_2022, df_2023_2024, df_cleaned, filename, output_dir="../data"):
     """Save the split datasets to CSV files"""
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
@@ -78,24 +91,33 @@ def save_datasets(df_2020_2022, df_2023_2024, filename, output_dir="../data"):
 
     # Define output paths with timestamp
     timestamp = datetime.now().strftime("%Y%m%d")
-    early_years_path = os.path.join(output_dir, f"{base_filename}_2020_2022_{timestamp}.csv")
-    later_years_path = os.path.join(output_dir, f"{base_filename}_2023_2024_{timestamp}.csv")
+
+    # Define output paths with timestamp
+    timestamp = datetime.now().strftime("%Y%m%d")
+    early_years_path = os.path.join(output_dir, f"2020-2022/{base_filename}_2020_2022_{timestamp}.csv")
+    later_years_path = os.path.join(output_dir, f"2023-2024/{base_filename}_2023_2024_{timestamp}.csv")
+    full_dataset_path = os.path.join(output_dir, f"cleaned/{base_filename}_cleaned_{timestamp}.csv")
 
     # Define analysis report paths
-    early_years_report = os.path.join(output_dir, f"{base_filename}_2020_2022_{timestamp}_analysis.txt")
-    later_years_report = os.path.join(output_dir, f"{base_filename}_2023_2024_{timestamp}_analysis.txt")
-    full_dataset_report = os.path.join(output_dir, f"{base_filename}_full_{timestamp}_analysis.txt")
+    early_years_report = os.path.join(output_dir, f"analyses/{base_filename}_2020_2022_{timestamp}_analysis.txt")
+    later_years_report = os.path.join(output_dir, f"analyses/{base_filename}_2023_2024_{timestamp}_analysis.txt")
+    full_dataset_report = os.path.join(output_dir, f"analyses/{base_filename}_full_{timestamp}_analysis.txt")
 
     # Save datasets
     df_2020_2022.to_csv(early_years_path, index=False)
     df_2023_2024.to_csv(later_years_path, index=False)
+    df_cleaned.to_csv(full_dataset_report, index=False)
+
 
     print(f"Saved 2020-2022 dataset with {len(df_2020_2022)} records to: {early_years_path}")
     print(f"Saved 2023-2024 dataset with {len(df_2023_2024)} records to: {later_years_path}")
+    print(f"Saved full cleaned dataset with {len(df_cleaned)} records to: {full_dataset_path}")
+
 
     return {
         'early_years_path': early_years_path,
         'later_years_path': later_years_path,
+        'full_dataset_path': full_dataset_path,
         'early_years_report': early_years_report,
         'later_years_report': later_years_report,
         'full_dataset_report': full_dataset_report
@@ -176,13 +198,15 @@ def main(file_path):
         cleaned_data = clean_data(data)
 
         # Split data by year ranges
-        df_2020_2022, df_2023_2024 = split_by_year(cleaned_data)
+        df_2020_2022, df_2023_2024, df_cleaned = split_by_year(cleaned_data)
 
         print(f"\n2020-2022 dataset shape: {df_2020_2022.shape}")
         print(f"2023-2024 dataset shape: {df_2023_2024.shape}")
+        print(f"Full cleaned dataset shape: {df_cleaned.shape}")
+
 
         # Save the split datasets and get report paths
-        output_paths = save_datasets(df_2020_2022, df_2023_2024, filename=file_path)
+        output_paths = save_datasets(df_2020_2022, df_2023_2024, df_cleaned, filename=file_path)
 
         # Analyze and save analysis for each dataset
         print("\nGenerating analysis reports...")
@@ -243,7 +267,7 @@ if __name__ == "__main__":
     try:
         # If argument provided, use that specific file
         if len(sys.argv) > 1:
-            data_path = f"../data/{sys.argv[1]}"
+            data_path = f"../data/original_data/{sys.argv[1]}"
             if os.path.exists(data_path):
                 data_paths = [data_path]
             else:
@@ -251,7 +275,7 @@ if __name__ == "__main__":
                 sys.exit(1)
         else:
             # Otherwise process all CSV files in the data directory
-            data_dir = "../data/"
+            data_dir = "../data/original_data"
             if not os.path.exists(data_dir):
                 print(f"Data directory not found: {data_dir}")
                 sys.exit(1)
