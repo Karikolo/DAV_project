@@ -1,12 +1,15 @@
+import os.path
+
 import pandas as pd
 import pmdarima as pm
 import matplotlib.pyplot as plt
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import sys
 
-data_file = "../data/2020-2022/weekly-confirmed-covid-19-cases_2020_2022_20250516.csv"
-title = "COVID-19 Cases in Canada (2020–2022) forecast"
-y_column_name = 'Weekly cases'
+data_file = "../data/2020-2022/weekly-confirmed-covid-19-deaths_2020_2022_20250516.csv"
+title = "COVID-19 Deaths in Canada (2020–2022) forecast"
+y_column_name = 'Weekly deaths'
+data_name = 'deaths'
 
 def main():
     df = pd.read_csv(data_file, parse_dates=['Day'])
@@ -23,7 +26,7 @@ def main():
     model = pm.arima.auto_arima(
         y_train,
         seasonal=True,
-        m=7, # quarterly seasonality
+        m=14,  # quarterly seasonality
         start_p=0, max_p=3,
         start_q=0, max_q=3,
         start_P=0, max_P=2,
@@ -71,15 +74,15 @@ def main():
 
     plt.title(f"Forecast vs Actual for Last {test_size} Days")
     plt.xlabel("Date")
-    plt.ylabel("Daily COVID-19 Cases")
+    plt.ylabel(f"Daily COVID-19 {data_name}")
     plt.legend()
     plt.tight_layout()
     plt.grid()
     try:
         save = sys.argv[1]
         if save!='0':
-            plt.savefig("../plots/cases_forecast_2020-22.png", dpi=300)
-            print ("../plots/cases_forecast_2020-22.png")
+            plt.savefig(f"../plots/{data_name}_forecast_2020-22.png", dpi=300)
+            print (f"../plots/{data_name}_forecast_2020-22.png")
         else:
             plt.show()
     except:
