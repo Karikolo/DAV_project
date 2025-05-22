@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Temperature Data Report</title>
+    <title>Canada Covid-19 Data Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,22 +24,30 @@
 </head>
 <body>
 
-    <h1>Temperature Data Analysis</h1>
-    <p>Report containing interactive plots generated using Bokeh, Plotly, and Altair libraries.</p>
+    <h1>Summary statistics</h1>
+    <p>A number of summary statistics concerning the Covid-19 in Canada.</p>
 
     <hr>
 
-    <h2>1. Bokeh - Scatter Plot</h2>
-    <iframe src="./plots/bokeh_scatter_plot.html"></iframe>
+    <h2> Covid cases </h2>
 
-    <h2>2. Plotly - Scatter Plot</h2>
-    <iframe src="plots/plotly_scatter_plot.html"></iframe>
+    <h3>1. Covid cases in Canada (todo: more details about the data, cumulative, daily...?)</h3>
+    <iframe src="./plots/cases.html"></iframe>
 
-    <h2>3. Altair - Scatter Plot</h2>
-    <iframe src="plots/altair_scatter_plot.html"></iframe>
+    <h3>2. Covid cases in Canada compared to selected countries, high-income country group and the world.</h3>
+    <iframe src="plots/cases_multi.html"></iframe>
 
-    <h2>1. Bokeh - Line Plot</h2>
-    <iframe src="plots/bokeh_line_plot.html"></iframe>
+    <h2> Covid deaths </h2>
+
+    <h3>3. Covid deaths in Canada</h3>
+    <iframe src="plots/deaths.html"></iframe>
+
+    <h3>4. Covid deaths in Canada compared to selected countries, high-income country group and the world.</h3>
+    <iframe src="plots/deaths_multi.html"></iframe>
+
+    <h1>Inferential statistics</h1>
+    <p>A number of inferential statistics concerning the Covid-19 in Canada.</p>
+    
 
     <h2>2. Plotly - Line Plot</h2>
     <iframe src="plots/plotly_line_plot.html"></iframe>
