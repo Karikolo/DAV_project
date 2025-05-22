@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Data Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            margin-bottom: 50px;
+        }
+        hr {
+            margin: 50px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Temperature Data Analysis</h1>
+    <p>Report containing interactive plots generated using Bokeh, Plotly, and Altair libraries.</p>
+
+    <hr>
+
+    <h2>1. Bokeh - Scatter Plot</h2>
+    <iframe src="./plots/bokeh_scatter_plot.html"></iframe>
+
+    <h2>2. Plotly - Scatter Plot</h2>
+    <iframe src="plots/plotly_scatter_plot.html"></iframe>
+
+    <h2>3. Altair - Scatter Plot</h2>
+    <iframe src="plots/altair_scatter_plot.html"></iframe>
+
+    <h2>1. Bokeh - Line Plot</h2>
+    <iframe src="plots/bokeh_line_plot.html"></iframe>
+
+    <h2>2. Plotly - Line Plot</h2>
+    <iframe src="plots/plotly_line_plot.html"></iframe>
+
+    <h2>3. Altair - Line Plot</h2>
+    <iframe src="plots/altair_line_plot.html"></iframe>
+
+    <hr>
+
+    <h2>Conclusion</h2>
+    <p>
+        The presented plots illustrate temperature trends across different countries and years.
+        Interactive features such as tooltips, zooming, and legends allow deeper exploration of the data.
+    </p>
+
+</body>
+</html>
