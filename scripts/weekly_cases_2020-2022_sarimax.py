@@ -3,6 +3,8 @@ import pmdarima as pm
 import matplotlib.pyplot as plt
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import sys
+from wiki_table_info_extraction import data_extraction
+import matplotlib.colors as mcolors
 
 data_file = "../data/2020-2022/weekly-confirmed-covid-19-cases_2020_2022_20250516.csv"
 title = "COVID-19 Cases in Canada (2020–2022) forecast"
@@ -73,6 +75,40 @@ def main():
     plt.xlabel("Date")
     plt.ylabel("Daily COVID-19 Cases")
     plt.legend()
+
+    variants_df = data_extraction("../data/original_data/covid-variants-wikipedia-table.csv").sort_values(by='Earliest sample').reset_index(drop=True)
+    variants_df = variants_df[variants_df['WHO label'] != "Alpha"]
+    # Generate unique, consistent colors for each variant
+    cmap = plt.cm.get_cmap('tab10')
+    color_map = {variant: cmap(i % 10) for i, variant in enumerate(variants_df['WHO label'].unique())}
+    for i, row in variants_df.iterrows():
+        variant = row['WHO label']
+        early_date = row['Earliest sample']
+        voc_date = row['Designated VOC']
+        place = row['First outbreak']
+        color = color_map[variant]
+        light_color = mcolors.to_rgba(color, alpha=0.3)  # same color, lighter
+
+        # Vertical line for earliest sample
+        plt.axvline(early_date, color=color, linestyle='--', linewidth=2)
+        plt.text(
+            early_date,
+            plt.ylim()[1] * (0.99 - 0.2 * (i % 2)),  # place text near top
+            f"{variant}\n{place}\n{early_date.date()}",
+            rotation=90, verticalalignment='top',
+            color=color, fontsize=9
+        )
+
+        # Vertical line for VOC designation
+        plt.axvline(voc_date, color=light_color, linestyle='--', linewidth=2)
+        plt.text(
+            voc_date,
+            plt.ylim()[1] * (0.99 + 0.2 * (i % 2 - 1)),  # place text near top, +/- 15% for visibility
+            f"{variant}\n{voc_date.date()}",
+            rotation=90, verticalalignment='top',
+            color=color, fontsize=9
+        )
+    plt.xlim(y.index.min(), y.index.max())
     plt.tight_layout()
     plt.grid()
     try:
