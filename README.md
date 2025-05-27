@@ -19,3 +19,5 @@ Contents:<br>
 Sources:
 *     The Economist (2024), World Health Organization (2025), Population based on various sources (2024) – with major processing by Our World in Data
 *     https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19/epidemiological-economic-research-data.html
+*     https://health-infobase.canada.ca/covid-19/testing-variants.html#a2
+*     https://en.wikipedia.org/wiki/Variants_of_SARS-CoV-2#Overview_of_historical_variants_of_concern_or_under_monitoring
