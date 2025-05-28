@@ -32,7 +32,7 @@
     <h2> Covid cases </h2>
 
     <h3>1. Covid cases in Canada (todo: more details about the data, cumulative, daily...?)</h3>
-    <iframe src="./plots/cases.html"></iframe>
+    <iframe src="plots/cases.html"></iframe>
 
     <h3>2. Covid cases in Canada compared to selected countries, high-income country group and the world.</h3>
     <iframe src="plots/cases_multi.html"></iframe>
@@ -47,13 +47,24 @@
 
     <h1>Inferential statistics</h1>
     <p>A number of inferential statistics concerning the Covid-19 in Canada.</p>
-    
 
-    <h2>2. Plotly - Line Plot</h2>
-    <iframe src="plots/plotly_line_plot.html"></iframe>
+    <h2>1. Cases forecast for years 2020-2022</h2>
+    <p> Used the SARIMAX model for its simplicity and interpretability for time series data. <br>
+        Parameter tuning was done with pmarima.arima.auto_arima, seasonality chosen by trial-and-error. <br>
+        No exogenous values were used. </p>
+    <iframe src="plots/cases_forecast_2020-22.png"></iframe>
 
-    <h2>3. Altair - Line Plot</h2>
-    <iframe src="plots/altair_line_plot.html"></iframe>
+    <h2>2. Deaths forecast for years 2020-2022</h2>
+    <p> Used the SARIMAX model for its simplicity and interpretability for time series data. <br>
+        Parameter tuning was done with pmarima.arima.auto_arima, seasonality chosen by trial-and-error. <br>
+        No exogenous values were used. </p>
+    <iframe src="plots/deaths_forecast_2020-22.png"></iframe>
+
+    <h2>3. Case fatality rate forecast for years 2020-2022</h2>
+    <p> Used the SARIMAX model for its simplicity and interpretability for time series data. <br>
+        Parameter tuning was done with pmarima.arima.auto_arima, seasonality chosen by trial-and-error.<br>
+        Data about vaccine doses, people vaccinated, tests and booster doses were used as exogenous values.. </p>
+    <iframe src="plots/fatality_rate_forecast_2020-22.png"></iframe>
 
     <hr>
 
