@@ -4,10 +4,10 @@ Project for Data Analysis and Visualisation course concerning information about 
 Contents:<br>
 . <br>
 ├── data <br>
-│     ├── 2020-2022 <br>
-│     ├── 2023-2024 <br>
-│     ├── analyses <br>
-│     └── original_data <br>
+│   ├── 2020-2022 <br>
+│   ├── 2023-2024 <br>
+│   ├── analyses <br>
+│   └── original_data <br>
 ├── plots <br>
 ├── README.md <br>
 └── scripts <br>
