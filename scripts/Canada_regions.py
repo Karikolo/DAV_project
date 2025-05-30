@@ -4,15 +4,15 @@ import requests
 
 df = pd.read_csv('../data/covid19-download.csv')
 
-# Usuń ogólne wpisy
+# Delete general entries
 df = df[~df['prname'].isin(['Canada', 'Repatriated travellers'])]
 df = df[~df['totalcases'].isin(['-'])]
 
-# Wczytaj GeoJSON
+# Upload GeoJSON
 url = "https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/canada.geojson"
 geojson = requests.get(url).json()
 
-# Przetwórz dane
+# Preprocess data
 df['date'] = pd.to_datetime(df['date']).dt.date
 df['prname'] = df['prname'].str.strip().str.title()
 df['totalcases'] = df['totalcases'].astype(float)
@@ -21,7 +21,7 @@ df = df.rename(columns={'totalcases': 'Confirmed Cases'})
 df = df.rename(columns={'reporting_week': 'Week'})
 df = df.rename(columns={'date': 'Date'})
 
-# Tworzenie animowanej mapy
+# Create animated map
 fig = px.choropleth(
     df,
     geojson=geojson,
