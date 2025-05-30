@@ -59,19 +59,22 @@
     <h2>1. Cases forecast for years 2020-2022</h2>
     <p> Used the SARIMAX model for its simplicity and interpretability for time series data. <br>
         Parameter tuning was done with pmarima.arima.auto_arima, seasonality chosen by trial-and-error. <br>
-        No exogenous values were used. </p>
+        No exogenous values were used. <br>
+        Final model: SARIMAX(1, 1, 0)x(2, 0, [1], 7).</p>
     <iframe src="plots/cases_forecast_2020-22.png"></iframe>
 
     <h2>2. Deaths forecast for years 2020-2022</h2>
     <p> Used the SARIMAX model for its simplicity and interpretability for time series data. <br>
         Parameter tuning was done with pmarima.arima.auto_arima, seasonality chosen by trial-and-error. <br>
-        No exogenous values were used. </p>
+        No exogenous values were used. <br>
+        Final model: SARIMAX(2, 0, 1).</p>
     <iframe src="plots/deaths_forecast_2020-22.png"></iframe>
 
     <h2>3. Case fatality rate forecast for years 2020-2022</h2>
     <p> Used the SARIMAX model for its simplicity and interpretability for time series data. <br>
         Parameter tuning was done with pmarima.arima.auto_arima, seasonality chosen by trial-and-error.<br>
-        Data about vaccine doses, people vaccinated, tests and booster doses were used as exogenous values.. </p>
+        Data about vaccine doses, people vaccinated, tests and booster doses were used as exogenous values.. <br>
+        Final model: SARIMAX(0, 2, 1)x(0, 0, 1, 7).</p>
     <iframe src="plots/fatality_rate_forecast_2020-22.png"></iframe>
 
     <hr>
