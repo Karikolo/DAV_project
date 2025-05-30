@@ -24,7 +24,8 @@ def bar(data, name):
         y='Raw value',
         custom_data=['Day_str'],
         labels={'Day': 'Date', y_column: f'Daily {name}'},
-        title=f'<b>Daily {name} in Canada per 1 000 000 people</b> <br><i>(7-day average)</i>'
+        title=f'<b>Daily {name} in Canada per 1 000 000 people</b> <br><i>(7-day average)</i>',
+        color_discrete_sequence=["red"]
     )
 
     fig.update_traces(

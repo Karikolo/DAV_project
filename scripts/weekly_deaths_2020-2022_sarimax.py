@@ -106,7 +106,7 @@ def main():
         plt.text(
             voc_date,
             plt.ylim()[1] * (0.99 + 0.15 * (i % 2 - 1)),  # place text near top, +/- 15% for visibility
-            f"{variant}\n{voc_date.date()}",
+            f"{variant} VOC\n{voc_date.date()}",
             rotation=90, verticalalignment='top',
             color=color, fontsize=9
         )

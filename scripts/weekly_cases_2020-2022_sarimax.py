@@ -25,7 +25,7 @@ def main():
     model = pm.arima.auto_arima(
         y_train,
         seasonal=True,
-        m=7, # quarterly seasonality
+        m=7,
         start_p=0, max_p=3,
         start_q=0, max_q=3,
         start_P=0, max_P=2,
@@ -104,11 +104,19 @@ def main():
         plt.text(
             voc_date,
             plt.ylim()[1] * (0.99 + 0.2 * (i % 2 - 1)),  # place text near top, +/- 15% for visibility
-            f"{variant}\n{voc_date.date()}",
+            f"{variant} VOC\n{voc_date.date()}",
             rotation=90, verticalalignment='top',
             color=color, fontsize=9
         )
     plt.xlim(y.index.min(), y.index.max())
+    plt.ylim(0)
+
+
+    # after plotting the data, format the labels
+    current_values = plt.gca().get_yticks()
+    plt.gca().set_yticklabels([f'{x*1.0/1_000:.0f}k' for x in current_values])
+
+
     plt.tight_layout()
     plt.grid()
     try:
