@@ -4,16 +4,16 @@ Project for Data Analysis and Visualisation course concerning information about 
 Contents:<br>
 . <br>
 ├── data <br>
-│   ├── 2020-2022 <br>
-│   ├── 2023-2024 <br>
-│   ├── analyses <br>
-│   └── original_data <br>
+│     ├── 2020-2022 <br>
+│     ├── 2023-2024 <br>
+│     ├── analyses <br>
+│     └── original_data <br>
 ├── plots <br>
 ├── README.md <br>
 └── scripts <br>
-    ├── check_and_divide_data.py   -  initial script for division of data into 2020-2022 and 2023-2024 time periods (for easier analysis) <br>
-    ├── daily-cases-Canada.py <br>
-    └── daily-cases-subplots.py <br>
+      ├── check_and_divide_data.py   -  initial script for division of data into 2020-2022 and 2023-2024 time periods (for easier analysis) <br>
+      ├── daily-cases-Canada.py <br>
+      └── daily-cases-subplots.py <br>
 
 
 Sources:
