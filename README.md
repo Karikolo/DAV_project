@@ -12,8 +12,8 @@ Contents:<br>
 ├── README.md <br>
 └── scripts <br>
             ├── check_and_divide_data.py   -  initial script for division of data into 2020-2022 and 2023-2024 time periods (for easier analysis) <br>
-            ├── daily-cases-Canada.py <br>
-            └── daily-cases-subplots.py <br>
+            ├── wiki_table_info_extraction.py - file with a function for extraction of data about COVID-19 variants from a wikipedia table <br>
+            └── *.py - scripts for creating plots <br>            
 
 
 Sources:
